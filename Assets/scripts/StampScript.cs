@@ -9,6 +9,12 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
     public bool isTick;
     public bool isSelected;
     public StampScript otherStamp;
+    private Vector3 defaultPosition;
+
+    private void Start()
+    {
+        defaultPosition = transform.position;
+    }
 
     public UnityEvent leftClick;
     public UnityEvent rightClick;
@@ -39,10 +45,10 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
 
             if (isTick)
             {
-                transform.position = new Vector3(6.91f, 2.85f, 0);
+                transform.position = defaultPosition;
             } else
             {
-                transform.position = new Vector3(6.91f, -0.27f, 0);
+                transform.position = defaultPosition;
             }
         }
     }
