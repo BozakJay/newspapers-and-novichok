@@ -7,7 +7,7 @@ public class ClockScript : MonoBehaviour
 {
     public ClockScript clock;
     public float timeBetweenHour;
-    public float hour = 8;
+    public float hour = 10;
     public TextMeshProUGUI textObject;
 
     private void Start()
@@ -25,10 +25,17 @@ public class ClockScript : MonoBehaviour
         string hourText = hour.ToString();
         if (hourText.Length == 1)
         {
-
+            hourText = "0" + hourText;
         }
-        textObject.text = textObject.text;
 
-        StartCoroutine(UpdateClock(timeBetweenHour));
+        textObject.text = hourText + ":00";
+
+        if (hour == 17)  // end day at 17:00
+        {
+
+        } else
+        {
+            StartCoroutine(UpdateClock(timeBetweenHour));
+        }
     }
 }
