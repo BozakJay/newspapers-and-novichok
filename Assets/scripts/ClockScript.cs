@@ -32,6 +32,7 @@ public class ClockScript : MonoBehaviour
 
         if (hour == 17)  // end day at 17:00
         {
+            // TODO end of day
 
         } else
         {
