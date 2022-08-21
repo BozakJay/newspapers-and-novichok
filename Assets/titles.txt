@@ -1,0 +1,27 @@
+== BAD NEWS ==
+
+"Explosion Kills 38 in Regir Region", explosion.png, -3;
+"Serial Killer Strikes Again!", deadman.png, -2;
+"Economy Drops By 8%", economydrop.png, -3;
+"Man, 51, Killed By Son", deadman.png, -2;
+"Women Robbed Of Apples!", brokenwindow.png, -1;
+"Homeless Population To Increase By 20%", homelessman.png, -1;
+"Terrorist Attack in Croya Region!", explosion.png, -3;
+"Crime Rates Rising Faster Than Past 30 Years", crimeclime.png, -2;
+"Shop Broken Into", brokenwindow.png, -1;
+"Senka Bank Fraud Cases Come To Light", money.png, -2;
+"President Orders Another Attack on Burnamoy!", putin.png, -3;
+"Man Killed In Hit And Run", deadman.png, -1;
+"Kittens Murdered By Pyschopath!", kittens.png, -1;
+"Famine in Greyage Region", famine.png, -3;
+
+== GOOD NEWS ==
+
+"New Bakery Opens!", shop.png, +2;
+"Man Saves Boy From  Drowning", man.png, +1;
+"War Going Well!", soldier.png, +3;
+"Man Wins Lottery, Donates To Orphanage!", man.png, +2;
+"Kittens Rescued From Abuse!", kittens.png, +2;
+"Highest Grain Yields In 5 Years!", field.png, +3;
+"Woman Turns 100!", woman.png, +1;
+"Terrorists Caught!", policecar.png, +3;
