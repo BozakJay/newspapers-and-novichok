@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Page
 {
-    public Page()
-    {
+    public string text;
+    public GameObject image;
 
+    public Page(string newText, GameObject newImage)
+    {
+        text = newText;
+        image = newImage;
     }
 }
