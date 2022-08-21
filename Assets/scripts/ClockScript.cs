@@ -41,8 +41,12 @@ public class ClockScript : MonoBehaviour
         }
     }
 
+
+    public GameObject g;
     public void FinishDay()
     {
+        if (g.activeSelf) return;
+
 
         // refill the tray for next day
         switch (GameData.week)
@@ -57,5 +61,24 @@ public class ClockScript : MonoBehaviour
                 pagesLeft.FillTray(6);
                 break;
         }
+
+        g.SetActive(true);
+        g.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Score: " + Score.gameScore;
+
+        int totalScore = 0;
+        foreach (Page p in pagesLeft.pages)
+        {
+            totalScore += p.score1 + p.score2 + p.score3 + p.score4;
+        }
+
+        Score.gameScore += totalScore;
+
+        StartCoroutine(RemoveScore(3f));
+    }
+
+    IEnumerator RemoveScore(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        g.SetActive(false);
     }
 }

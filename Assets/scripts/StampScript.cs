@@ -19,6 +19,9 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
     public GameObject article2;
     public GameObject article3;
     public GameObject article4;
+    public GameObject tickMark;
+    public GameObject crossMark;
+    public PagesLeft pgl;
 
     private void Start()
     {
@@ -62,17 +65,17 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
             if (isTick)
             {
                 transform.position = defaultPosition;
-                article1.transform.GetChild(0).gameObject.SetActive(false);
-                article2.transform.GetChild(0).gameObject.SetActive(false);
-                article3.transform.GetChild(0).gameObject.SetActive(false);
-                article4.transform.GetChild(0).gameObject.SetActive(false);
+                article1.transform.GetChild(1).gameObject.SetActive(false);
+                article2.transform.GetChild(1).gameObject.SetActive(false);
+                article3.transform.GetChild(1).gameObject.SetActive(false);
+                article4.transform.GetChild(1).gameObject.SetActive(false);
             } else
             {
                 transform.position = defaultPosition;
-                article1.transform.GetChild(0).gameObject.SetActive(false);
-                article2.transform.GetChild(0).gameObject.SetActive(false);
-                article3.transform.GetChild(0).gameObject.SetActive(false);
-                article4.transform.GetChild(0).gameObject.SetActive(false);
+                article1.transform.GetChild(1).gameObject.SetActive(false);
+                article2.transform.GetChild(1).gameObject.SetActive(false);
+                article3.transform.GetChild(1).gameObject.SetActive(false);
+                article4.transform.GetChild(1).gameObject.SetActive(false);
             }
         }
     }
@@ -88,14 +91,14 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
         transform.position = newPoint;
 
         GameObject article = AboveArticle();  // check if above article
-        article1.transform.GetChild(0).gameObject.SetActive(false);
-        article2.transform.GetChild(0).gameObject.SetActive(false);
-        article3.transform.GetChild(0).gameObject.SetActive(false);
-        article4.transform.GetChild(0).gameObject.SetActive(false);
+        article1.transform.GetChild(1).gameObject.SetActive(false);
+        article2.transform.GetChild(1).gameObject.SetActive(false);
+        article3.transform.GetChild(1).gameObject.SetActive(false);
+        article4.transform.GetChild(1).gameObject.SetActive(false);
 
         if (article != null)
         {
-            article.transform.GetChild(0).gameObject.SetActive(true);
+            article.transform.GetChild(1).gameObject.SetActive(true);
         }
     }
 
@@ -104,9 +107,39 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
         GameObject article = AboveArticle();  // check if above article
         if (article == null) return;
 
-        article.transform.GetChild(0).gameObject.SetActive(true);
+        if (article.GetComponent<ArticleScript>().isStamped) return;
+
+        article.transform.GetChild(1).gameObject.SetActive(true);
+
+        // article.GetComponent<ArticleScript>().articleNum
 
         audioSource.PlayOneShot(utils.RandomStampSound(), 1f);
+
+        if (isTick)
+        {
+            Instantiate(tickMark, transform.position, Quaternion.identity);
+        } else
+        {
+            Instantiate(crossMark, transform.position, Quaternion.identity);
+            if (article.GetComponent<ArticleScript>().articleNum == 1)
+            {
+                pgl.activePage.score1 = 0;
+            }
+            if (article.GetComponent<ArticleScript>().articleNum == 2)
+            {
+                pgl.activePage.score2 = 0;
+            }
+            if (article.GetComponent<ArticleScript>().articleNum == 3)
+            {
+                pgl.activePage.score3 = 0;
+            }
+            if (article.GetComponent<ArticleScript>().articleNum == 4)
+            {
+                pgl.activePage.score4 = 0;
+            }
+        }
+
+        article.GetComponent<ArticleScript>().isStamped = true;
     }
 
     private GameObject AboveArticle()
