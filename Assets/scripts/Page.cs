@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class Page
 {
-    public string text;
+    public string article1;
+    public string article2;
+    public string article3;
+    public string article4;
     public GameObject image;
-    public int score;
 
-    public Page(string newText, GameObject newImage)
+    public Page(string articleOne, string articleTwo, string articleThree, string articleFour)
     {
-        text = newText;
-        image = newImage;
-    }
-
-    public void AddScore(int amount)
-    {
-        score += amount;
+        article1 = articleOne;
+        article2 = articleTwo;
+        article3 = articleThree;
+        article4 = articleFour;
     }
 }

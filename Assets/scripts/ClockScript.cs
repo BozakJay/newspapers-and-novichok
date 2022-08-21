@@ -43,7 +43,6 @@ public class ClockScript : MonoBehaviour
 
     public void FinishDay()
     {
-        int score = pagesLeft.TotalScore();
 
         // refill the tray for next day
         switch (GameData.week)

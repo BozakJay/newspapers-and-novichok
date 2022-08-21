@@ -62,9 +62,17 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
             if (isTick)
             {
                 transform.position = defaultPosition;
+                article1.transform.GetChild(0).gameObject.SetActive(false);
+                article2.transform.GetChild(0).gameObject.SetActive(false);
+                article3.transform.GetChild(0).gameObject.SetActive(false);
+                article4.transform.GetChild(0).gameObject.SetActive(false);
             } else
             {
                 transform.position = defaultPosition;
+                article1.transform.GetChild(0).gameObject.SetActive(false);
+                article2.transform.GetChild(0).gameObject.SetActive(false);
+                article3.transform.GetChild(0).gameObject.SetActive(false);
+                article4.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }
@@ -80,7 +88,6 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
         transform.position = newPoint;
 
         GameObject article = AboveArticle();  // check if above article
-        if (article == null)
         article1.transform.GetChild(0).gameObject.SetActive(false);
         article2.transform.GetChild(0).gameObject.SetActive(false);
         article3.transform.GetChild(0).gameObject.SetActive(false);
@@ -106,11 +113,11 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
     {
         if (-5.81f < transform.position.x && transform.position.x < 0)  // left hand side
         {
-            if (0 < transform.position.x && transform.position.x < 4.45f)  // top left hand side
+            if (0 < transform.position.y && transform.position.y < 4.45f)  // top left hand side
             {
                 return article1;
             }
-            if (-4.45f < transform.position.x && transform.position.x < 0)  // bottom left hand side
+            if (-4.45f < transform.position.y && transform.position.y < 0)  // bottom left hand side
             {
                 return article2;
             }
@@ -118,11 +125,11 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
 
         if (0f < transform.position.x && transform.position.x < 5.81)  // right hand side
         {
-            if (0 < transform.position.x && transform.position.x < 4.45f)  // top right hand side
+            if (0 < transform.position.y && transform.position.y < 4.45f)  // top right hand side
             {
                 return article3;
             }
-            if (-4.45f < transform.position.x && transform.position.x < 0)  // bottom right hand side
+            if (-4.45f < transform.position.y && transform.position.y < 0)  // bottom right hand side
             {
                 return article4;
             }
