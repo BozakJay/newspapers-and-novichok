@@ -15,6 +15,10 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
     public float cooldownTime;
     private float cooldownTimeStamp;
     public Utilities utils;
+    public GameObject article1;
+    public GameObject article2;
+    public GameObject article3;
+    public GameObject article4;
 
     private void Start()
     {
@@ -74,26 +78,41 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
         Vector2 mousePos = Input.mousePosition;
         Vector2 newPoint = Camera.main.ScreenToWorldPoint(mousePos);
         transform.position = newPoint;
+
+        GameObject article = AboveArticle();  // check if above article
+        if (article == null)
+        article1.transform.GetChild(0).gameObject.SetActive(false);
+        article2.transform.GetChild(0).gameObject.SetActive(false);
+        article3.transform.GetChild(0).gameObject.SetActive(false);
+        article4.transform.GetChild(0).gameObject.SetActive(false);
+
+        if (article != null)
+        {
+            article.transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
 
     public void ClickArticle()
     {
-        if (AboveArticle() == 0) return;
+        GameObject article = AboveArticle();  // check if above article
+        if (article == null) return;
+
+        article.transform.GetChild(0).gameObject.SetActive(true);
 
         audioSource.PlayOneShot(utils.RandomStampSound(), 1f);
     }
 
-    private int AboveArticle()
+    private GameObject AboveArticle()
     {
         if (-5.81f < transform.position.x && transform.position.x < 0)  // left hand side
         {
             if (0 < transform.position.x && transform.position.x < 4.45f)  // top left hand side
             {
-                return 1;
+                return article1;
             }
             if (-4.45f < transform.position.x && transform.position.x < 0)  // bottom left hand side
             {
-                return 2;
+                return article2;
             }
         }
 
@@ -101,13 +120,13 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
         {
             if (0 < transform.position.x && transform.position.x < 4.45f)  // top right hand side
             {
-                return 3;
+                return article3;
             }
             if (-4.45f < transform.position.x && transform.position.x < 0)  // bottom right hand side
             {
-                return 4;
+                return article4;
             }
         }
-        return 0;
+        return null;
     }
 }
