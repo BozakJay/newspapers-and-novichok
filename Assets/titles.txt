@@ -10,7 +10,7 @@
 "Crime Rates Rising Faster Than Past 30 Years", crimeclime.png, -2;
 "Shop Broken Into", brokenwindow.png, -1;
 "Senka Bank Fraud Cases Come To Light", money.png, -2;
-"President Orders Another Attack on Burnamoy!", putin.png, -3;
+"President Orders Another Attack on Burnamoy!", notputin.png, -3;
 "Man Killed In Hit And Run", deadman.png, -1;
 "Kittens Murdered By Pyschopath!", kittens.png, -1;
 "Famine in Greyage Region", famine.png, -3;
@@ -25,3 +25,4 @@
 "Highest Grain Yields In 5 Years!", field.png, +3;
 "Woman Turns 100!", woman.png, +1;
 "Terrorists Caught!", policecar.png, +3;
+"President Meets With Leader Of Guhna", notputin.png, +3;
