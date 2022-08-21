@@ -5,10 +5,11 @@ using TMPro;
 
 public class ClockScript : MonoBehaviour
 {
-    public ClockScript clock;
+    private ClockScript clock;
     public float timeBetweenHour;
     public float hour = 10;
-    public TextMeshProUGUI textObject;
+    private TextMeshProUGUI textObject;
+    public PagesLeft pagesLeft;
 
     private void Start()
     {
@@ -32,11 +33,30 @@ public class ClockScript : MonoBehaviour
 
         if (hour == 17)  // end day at 17:00
         {
-            // TODO end of day
+            FinishDay();
 
         } else
         {
             StartCoroutine(UpdateClock(timeBetweenHour));
+        }
+    }
+
+    public void FinishDay()
+    {
+        int score = pagesLeft.TotalScore();
+
+        // refill the tray for next day
+        switch (GameData.week)
+        {
+            case 0:
+                pagesLeft.FillTray(4);
+                break;
+            case 1:
+                pagesLeft.FillTray(5);
+                break;
+            case 2:
+                pagesLeft.FillTray(6);
+                break;
         }
     }
 }

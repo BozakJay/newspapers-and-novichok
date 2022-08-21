@@ -12,6 +12,7 @@ public class PagesLeft : MonoBehaviour
     public Page activePage;
     public TextMeshProUGUI newspaperText;
     public Utilities utils;
+    public ClockScript clock;
 
     private void Start()
     {
@@ -40,6 +41,12 @@ public class PagesLeft : MonoBehaviour
     {
         if (activePage != null) activePage.image.SetActive(false);
 
+        if (pages.Count == 0)
+        {
+            clock.FinishDay();
+            return;
+        }
+
         activePage = pages[pages.Count-1];
         pages.Remove(pages[pages.Count-1]);
         pageObjects[pages.Count].SetActive(false);
@@ -56,5 +63,30 @@ public class PagesLeft : MonoBehaviour
         pageObjects[pages.Count - 1].SetActive(true);
         activePage = null;
         newspaperText.text = "";
+    }
+
+    public void FillTray(int numberOfPages)
+    {
+        pages = new List<Page>();  // reset pages
+
+        for (int i = 0; i < numberOfPages; i++)
+        {
+            pages.Add(new Page(utils.RandomString(400), utils.RandomNewsImage()));
+        }
+
+        for (int i = 0; i < pages.Count; i++)
+        {
+            pageObjects[i].SetActive(true);
+        }
+    }
+
+    public int TotalScore()
+    {
+        int total = 0;
+        foreach (Page p in pages)
+        {
+            total += p.score;
+        }
+        return total;
     }
 }
