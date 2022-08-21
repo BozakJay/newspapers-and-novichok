@@ -43,7 +43,7 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
             if (isSelected)  // left click -> use the stamp
             {
                 // TODO what stamp does when used
-                audioSource.PlayOneShot(utils.RandomStampSound(), 1f);
+                ClickArticle();
 
             } else  // left click -> select the stamp
             {
@@ -74,5 +74,40 @@ public class StampScript : MonoBehaviour, IPointerClickHandler
         Vector2 mousePos = Input.mousePosition;
         Vector2 newPoint = Camera.main.ScreenToWorldPoint(mousePos);
         transform.position = newPoint;
+    }
+
+    public void ClickArticle()
+    {
+        if (AboveArticle() == 0) return;
+
+        audioSource.PlayOneShot(utils.RandomStampSound(), 1f);
+    }
+
+    private int AboveArticle()
+    {
+        if (-5.81f < transform.position.x && transform.position.x < 0)  // left hand side
+        {
+            if (0 < transform.position.x && transform.position.x < 4.45f)  // top left hand side
+            {
+                return 1;
+            }
+            if (-4.45f < transform.position.x && transform.position.x < 0)  // bottom left hand side
+            {
+                return 2;
+            }
+        }
+
+        if (0f < transform.position.x && transform.position.x < 5.81)  // right hand side
+        {
+            if (0 < transform.position.x && transform.position.x < 4.45f)  // top right hand side
+            {
+                return 3;
+            }
+            if (-4.45f < transform.position.x && transform.position.x < 0)  // bottom right hand side
+            {
+                return 4;
+            }
+        }
+        return 0;
     }
 }
